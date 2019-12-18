@@ -1,0 +1,22 @@
+[user]
+	name = Ashley Bye
+	email = ashley.bye85@gmail.com
+
+[core]
+  editor = vim
+
+[color]
+  ui = true
+
+[pull]
+  rebase = true
+
+[alias]
+  br = branch
+  co = checkout
+  st = status
+  staged = diff --staged
+  prune-branches = fetch origin --prune
+  l  = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short
+  ld = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --since=1.days
+  lw = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --since=1.weeks
