@@ -38,6 +38,10 @@ alias gl="git l"
 alias gp="git push"
 alias gpf="git push --force-with-lease"
 alias gs="git st"
+alias tls="tmux ls"
+alias ta="tmux attach-session -t"
+alias tn="tmux new -s"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
