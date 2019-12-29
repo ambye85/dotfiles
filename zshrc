@@ -36,6 +36,7 @@ export LANG=en_GB.UTF-8
 export EDITOR='vim'
 
 # Aliases
+alias reload="source ~/.zshrc"
 alias a="source venv/bin/activate"
 alias d="deactivate"
 alias mkenv="pyenv local $PYTHON_VERSION && python -m venv venv"
@@ -52,4 +53,10 @@ alias tn="tmux new -s"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( virtualenv dir vcs )
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=( status command_execution_time background_jobs custom_rprompt context )
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
