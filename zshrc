@@ -24,6 +24,11 @@ fpath=(~/.config/zsh/functions $fpath)
 # Homebrew
 export PATH="/usr/local/sbin:$PATH"
 
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/shims:$PATH"
+PYTHON_VERSION=3.8.0
+
 # Set language environment
 export LANG=en_GB.UTF-8
 
@@ -31,6 +36,9 @@ export LANG=en_GB.UTF-8
 export EDITOR='vim'
 
 # Aliases
+alias a="source venv/bin/activate"
+alias d="deactivate"
+alias mkenv="pyenv local $PYTHON_VERSION && python -m venv venv"
 alias gb="git br"
 alias gc="git commit"
 alias gco="git co"
