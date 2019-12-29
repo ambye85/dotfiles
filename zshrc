@@ -22,6 +22,8 @@ export CPPFLAGS="-I/usr/local/opt/zlib/include"
 fpath=(~/.config/zsh/functions $fpath)
 
 # Homebrew
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix gnu-sed)/libexec/gnubin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # Pyenv
