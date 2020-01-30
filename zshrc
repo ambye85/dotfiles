@@ -31,6 +31,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/shims:$PATH"
 PYTHON_VERSION=3.8.0
 
+# Go
+export PATH="$PATH:/usr/local/go/bin"
+
 # Set language environment
 export LANG=en_GB.UTF-8
 
