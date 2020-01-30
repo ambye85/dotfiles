@@ -1,18 +1,9 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 # Source zplugin
 source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
 # Load plugins first
-# zplugin ice depth=1; zplugin light romkatv/powerlevel10k
-# zplugin snippet https://github.com/sainnhe/dotfiles/blob/master/.zsh-theme-gruvbox-material-dark
 zplugin light arcticicestudio/nord-dircolors
 zplg ice depth'1'; zplg light denysdovhan/spaceship-prompt
 
@@ -21,7 +12,7 @@ export LDFLAGS="-L/usr/local/opt/zlib/lib"
 export CPPFLAGS="-I/usr/local/opt/zlib/include"
 
 # Add sitefunctions to ZPATH (alacritty completions install in here)
-fpath=(~/.config/zsh/functions $fpath)
+# fpath=(~/.config/zsh/functions $fpath)
 
 # Homebrew
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
@@ -43,6 +34,7 @@ export LANG=en_GB.UTF-8
 export EDITOR='vim'
 
 # Aliases
+alias aliases="cat ~/.zshrc | grep alias"
 alias reload="source ~/.zshrc"
 alias a="source venv/bin/activate"
 alias d="deactivate"
@@ -58,43 +50,118 @@ alias tls="tmux ls"
 alias ta="tmux attach-session -t"
 alias tn="tmux new -s"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( virtualenv dir vcs )
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=( status command_execution_time background_jobs custom_rprompt context )
-
 # Spaceship prompt
-SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_PROMPT_ORDER=(
-	dir
-	host
-	vi_mode
-	jobs
-	char
+  time
+  user
+  host
+  dir
+  git
+  golang
+  docker
+  venv
+  pyenv
+  line_sep
+  vi_mode
+  char
 )
-SPACESHIP_RPROMPT_ORDER=(
-	terraform
-	# kubecontext
-	venv
-	git
-	exit_code
-)
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_CHAR_SYMBOL='❯ '
-SPACESHIP_VI_MODE_SUFFIX='❯'
-SPACESHIP_VI_MODE_INSERT='❯'
-SPACESHIP_VI_MODE_NORMAL='❮'
-SPACESHIP_VI_MODE_COLOR='magenta'
-SPACESHIP_DIR_TRUNC_REPO=false
-SPACESHIP_KUBECONTEXT_SHOW=false
-SPACESHIP_KUBECONTEXT_SYMBOL='⎈  '
-SPACESHIP_PYENV_SHOW=false
-SPACESHIP_EXIT_CODE_SHOW=true
-SPACESHIP_EXIT_CODE_SYMBOL='✘ '
-SPACESHIP_GIT_STATUS_PREFIX=' '
-SPACESHIP_GIT_STATUS_SUFFIX=''
-SPACESHIP_GIT_STATUS_COLOR='magenta'
-SPACESHIP_TERRAFORM_SYMBOL=' '
+# PROMPT
+SPACESHIP_CHAR_SYMBOL="❯ "
+SPACESHIP_PROMPT_ADD_NEWLINE=true
+SPACESHIP_PROMPT_SEPARATE_LINE=true
+SPACESHIP_PROMPT_PREFIXES_SHOW=true
+SPACESHIP_PROMPT_SUFFIXES_SHOW=true
+SPACESHIP_PROMPT_DEFAULT_PREFIX="via "
+SPACESHIP_PROMPT_DEFAULT_SUFFIX=" "
+
+# TIME
+SPACESHIP_TIME_SHOW=false
+SPACESHIP_TIME_PREFIX="at "
+SPACESHIP_TIME_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_TIME_FORMAT=false
+SPACESHIP_TIME_12HR=false
+SPACESHIP_TIME_COLOR="yellow"
+
+# USER
+SPACESHIP_USER_SHOW=true
+SPACESHIP_USER_PREFIX="with "
+SPACESHIP_USER_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_USER_COLOR="yellow"
+SPACESHIP_USER_COLOR_ROOT="red"
+
+# HOST
+SPACESHIP_HOST_SHOW=true
+SPACESHIP_HOST_PREFIX="at "
+SPACESHIP_HOST_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_HOST_COLOR="green"
+
+# DIR
+SPACESHIP_DIR_SHOW=true
+SPACESHIP_DIR_PREFIX="in "
+SPACESHIP_DIR_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_DIR_TRUNC=3
+SPACESHIP_DIR_COLOR="cyan"
+
+# GIT
+SPACESHIP_GIT_SHOW=true
+SPACESHIP_GIT_PREFIX="on "
+SPACESHIP_GIT_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_GIT_SYMBOL=" "
+# GIT BRANCH
+SPACESHIP_GIT_BRANCH_SHOW=true
+SPACESHIP_GIT_BRANCH_PREFIX="$SPACESHIP_GIT_SYMBOL"
+SPACESHIP_GIT_BRANCH_SUFFIX=""
+SPACESHIP_GIT_BRANCH_COLOR="magenta"
+# GIT STATUS
+SPACESHIP_GIT_STATUS_SHOW=true
+SPACESHIP_GIT_STATUS_PREFIX=" ["
+SPACESHIP_GIT_STATUS_SUFFIX="]"
+SPACESHIP_GIT_STATUS_COLOR="red"
+SPACESHIP_GIT_STATUS_UNTRACKED="?"
+SPACESHIP_GIT_STATUS_ADDED="+"
+SPACESHIP_GIT_STATUS_MODIFIED="!"
+SPACESHIP_GIT_STATUS_RENAMED="»"
+SPACESHIP_GIT_STATUS_DELETED="✘"
+SPACESHIP_GIT_STATUS_STASHED="$"
+SPACESHIP_GIT_STATUS_UNMERGED="="
+SPACESHIP_GIT_STATUS_AHEAD="⇡"
+SPACESHIP_GIT_STATUS_BEHIND="⇣"
+SPACESHIP_GIT_STATUS_DIVERGED="⇕"
+
+# GOLANG
+SPACESHIP_GOLANG_SHOW=true
+SPACESHIP_GOLANG_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
+SPACESHIP_GOLANG_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_GOLANG_SYMBOL="🐹 "
+SPACESHIP_GOLANG_COLOR="cyan"
+
+# DOCKER
+SPACESHIP_DOCKER_SHOW=true
+SPACESHIP_DOCKER_PREFIX="on "
+SPACESHIP_DOCKER_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_DOCKER_SYMBOL="🐳 "
+SPACESHIP_DOCKER_COLOR="cyan"
+
+# VENV
+SPACESHIP_VENV_SHOW=true
+SPACESHIP_VENV_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
+SPACESHIP_VENV_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_VENV_COLOR="blue"
+
+# PYENV
+SPACESHIP_PYENV_SHOW=true
+SPACESHIP_PYENV_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
+SPACESHIP_PYENV_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_PYENV_SYMBOL="🐍 "
+SPACESHIP_PYENV_COLOR="yellow"
+
+# VI_MODE
+SPACESHIP_VI_MODE_SHOW=true
+SPACESHIP_VI_MODE_PREFIX=""
+SPACESHIP_VI_MODE_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_VI_MODE_INSERT="[I]"
+SPACESHIP_VI_MODE_NORMAL="[N]"
+SPACESHIP_VI_MODE_COLOR="white"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
