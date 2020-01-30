@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Source zplugin
 source "$HOME/.zplugin/bin/zplugin.zsh"
@@ -11,8 +11,10 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
 # Load plugins first
-zplugin ice depth=1; zplugin light romkatv/powerlevel10k
-zplugin snippet https://github.com/sainnhe/dotfiles/blob/master/.zsh-theme-gruvbox-material-dark
+# zplugin ice depth=1; zplugin light romkatv/powerlevel10k
+# zplugin snippet https://github.com/sainnhe/dotfiles/blob/master/.zsh-theme-gruvbox-material-dark
+zplugin light arcticicestudio/nord-dircolors
+zplg ice depth'1'; zplg light denysdovhan/spaceship-prompt
 
 # Export zlib
 export LDFLAGS="-L/usr/local/opt/zlib/lib"
@@ -58,8 +60,41 @@ alias tn="tmux new -s"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( virtualenv dir vcs )
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=( status command_execution_time background_jobs custom_rprompt context )
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( virtualenv dir vcs )
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=( status command_execution_time background_jobs custom_rprompt context )
+
+# Spaceship prompt
+SPACESHIP_PROMPT_SEPARATE_LINE=true
+SPACESHIP_PROMPT_ORDER=(
+	dir
+	host
+	vi_mode
+	jobs
+	char
+)
+SPACESHIP_RPROMPT_ORDER=(
+	terraform
+	# kubecontext
+	venv
+	git
+	exit_code
+)
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_CHAR_SYMBOL='❯ '
+SPACESHIP_VI_MODE_SUFFIX='❯'
+SPACESHIP_VI_MODE_INSERT='❯'
+SPACESHIP_VI_MODE_NORMAL='❮'
+SPACESHIP_VI_MODE_COLOR='magenta'
+SPACESHIP_DIR_TRUNC_REPO=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_KUBECONTEXT_SYMBOL='⎈  '
+SPACESHIP_PYENV_SHOW=false
+SPACESHIP_EXIT_CODE_SHOW=true
+SPACESHIP_EXIT_CODE_SYMBOL='✘ '
+SPACESHIP_GIT_STATUS_PREFIX=' '
+SPACESHIP_GIT_STATUS_SUFFIX=''
+SPACESHIP_GIT_STATUS_COLOR='magenta'
+SPACESHIP_TERRAFORM_SYMBOL=' '
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
