@@ -6,6 +6,7 @@ autoload -Uz _zplugin
 # Load plugins first
 zplugin light arcticicestudio/nord-dircolors
 zplg ice depth'1'; zplg light denysdovhan/spaceship-prompt
+zplugin light zsh-users/zsh-completions
 
 # Export zlib
 export LDFLAGS="-L/usr/local/opt/zlib/lib"
@@ -164,7 +165,10 @@ SPACESHIP_VI_MODE_INSERT="[I]"
 SPACESHIP_VI_MODE_NORMAL="[N]"
 SPACESHIP_VI_MODE_COLOR="white"
 
+# Pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+# Load autocompletions
+autoload -U compinit && compinit
