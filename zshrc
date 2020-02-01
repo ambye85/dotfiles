@@ -27,7 +27,7 @@ PYTHON_VERSION=3.8.0
 
 # Go
 export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:/$HOME/go/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 # Set language environment
 export LANG=en_GB.UTF-8
