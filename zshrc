@@ -38,6 +38,8 @@ export EDITOR='vim'
 # Aliases
 alias aliases="cat ~/.zshrc | grep alias"
 alias reload="source ~/.zshrc"
+alias ls="ls --color"
+alias lsa="ls -la --color"
 alias a="source venv/bin/activate"
 alias d="deactivate"
 alias mkenv="pyenv local $PYTHON_VERSION && python -m venv venv"
